@@ -1,1 +1,10 @@
-[{"id":1675518243353,"nameLeader":"Tirael","score":4100},{"id":1675596829210,"nameLeader":"Ростик","score":65},{"id":2,"nameLeader":"Гупкин","score":34},{"id":1675518961530,"nameLeader":"Боинг","score":28},{"id":3,"nameLeader":"Tira","score":25},{"id":1675516310359,"nameLeader":"Tirael","score":19},{"id":1,"nameLeader":"Пупкин","score":12},{"id":4,"nameLeader":"ira","score":5}]
+[
+    { "id": 1675518243353, "nameLeader": "Tirael", "score": 4100 },
+    { "id": 1675596829210, "nameLeader": "Ростик", "score": 65 },
+    { "id": 2, "nameLeader": "Гупкин", "score": 34 },
+    { "id": 1675518961530, "nameLeader": "Боинг", "score": 28 },
+    { "id": 3, "nameLeader": "Tira", "score": 25 },
+    { "id": 1675516310359, "nameLeader": "Tirael", "score": 19 },
+    { "id": 1, "nameLeader": "Пупкин", "score": 12 },
+    { "id": 4, "nameLeader": "ira", "score": 5 }
+]

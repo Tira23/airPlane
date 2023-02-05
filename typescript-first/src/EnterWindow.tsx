@@ -57,18 +57,17 @@ export const EnterWindow = () => {
     }, [newScore, newTime, setNewScore, setNewTime]);
     // ==========================================
     const loadToServer = useCallback(() => {
-        fetch("/api", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json;charset=utf-8",
-            },
-            body: JSON.stringify(
-                leader.map((i) => {
-                    delete i.fromServer;
-                    return i;
-                })
-            ),
+        const leaderToDl = leader.map((i) => {
+            delete i.fromServer;
+            return i;
         });
+        const fileData = JSON.stringify(leaderToDl);
+        const blob = new Blob([fileData], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.download = "user-info.json";
+        link.href = url;
+        link.click();
     }, [leader]);
 
     const reloadPage = useCallback(() => {
@@ -86,10 +85,10 @@ export const EnterWindow = () => {
                     {anonimus?.nameLeader === "Аноним" ? (
                         <button disabled>Внести себя в таблицу лидеров</button>
                     ) : newTime > 0 ? (
-                        <button disabled>Внести себя в таблицу лидеров</button>
+                        <button disabled>Скачать таблицу лидеров</button>
                     ) : (
                         <button onClick={loadToServer}>
-                            Внести себя в таблицу лидеров
+                            Скачать таблицу лидеров
                         </button>
                     )}
                     <button onClick={reloadPage}>Начать заново</button>
