@@ -4,7 +4,7 @@ import { Context } from "./Context";
 import { BattleField } from "./BattleField";
 import { LeftSide } from "./LeftSide";
 import { EnterWindow } from "./EnterWindow";
-import { ServerLeader } from "./interface";
+const offLineLeadred = require("./backend_Json/leaderBoard.json");
 
 function App() {
     const { login, enemy, setEnemy, innerDivWidth, setLeader } =
@@ -52,13 +52,7 @@ function App() {
     //===================================================
     // получаю данные о лидерах с сервера
     useEffect(() => {
-        fetch("/api")
-            .then((response) => response.json())
-            .then((data) => {
-                setLeader(
-                    data.map((i: ServerLeader) => ({ ...i, fromServer: true }))
-                );
-            });
+        setLeader(offLineLeadred);
     }, [setLeader]);
 
     //===================================================
