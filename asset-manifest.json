@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/airPlane/typescript-first/static/css/main.b126eb79.css",
+    "main.js": "/airPlane/typescript-first/static/js/main.b27e4ec9.js",
+    "static/js/787.4aa4839d.chunk.js": "/airPlane/typescript-first/static/js/787.4aa4839d.chunk.js",
+    "static/media/BgSide.jpg": "/airPlane/typescript-first/static/media/BgSide.2717fb4a52e8f1bfbe2e.jpg",
+    "index.html": "/airPlane/typescript-first/index.html",
+    "main.b126eb79.css.map": "/airPlane/typescript-first/static/css/main.b126eb79.css.map",
+    "main.b27e4ec9.js.map": "/airPlane/typescript-first/static/js/main.b27e4ec9.js.map",
+    "787.4aa4839d.chunk.js.map": "/airPlane/typescript-first/static/js/787.4aa4839d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b126eb79.css",
+    "static/js/main.b27e4ec9.js"
+  ]
+}
