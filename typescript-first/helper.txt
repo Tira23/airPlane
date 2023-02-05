@@ -1,0 +1,90 @@
+APP
+
+import React, { useContext } from "react";
+import "./App.css";
+import { contextProps } from "./Context";
+import { EnemyId } from "./interface";
+
+function App() {
+  const { enemy, setEnemy } = useContext(contextProps);
+  const firstEnemy = enemy[0];
+  const secondEnemy = enemy[1];
+  const thidEnemy = enemy[2];
+
+  const handelClick = () => {
+    const newId = Math.floor(Math.random() * 10);
+    setEnemy((prev: Array<EnemyId> | Array<null>) => {
+      const newEm: EnemyId = { enemyId: newId, pos: { top: 432, left: 12 } };
+      return [...prev, newEm];
+    });
+  };
+  return (
+    <div className="container" style={{ display: "flex" }}>
+      <div>
+        {enemy.map((item, index) => (
+          <div style={{ display: "flex" }} key={index}>
+            Count: {item.enemyId}
+          </div>
+        ))}
+      </div>
+      <div style={{ flex: "1 1" }}>
+        <button onClick={() => handelClick()}>Press me</button>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+
+// Interface
+
+// import { Dispatch } from "react";
+
+// export interface Laser {
+// 	laserId:number,
+// 	position: Position
+// }
+// export interface Position {
+// 	top:number,
+// 	left:number
+// }
+
+// export interface EnemyId {
+// 	enemyId:number,
+// 	pos: Position
+// }
+
+// export interface Enemy {
+// 	enemy:number,
+// 	pos: Position
+// }
+// export interface PropsInit {
+// 	enemy: Array<EnemyId>;
+// 	setEnemy: Dispatch<EnemyId> | any;
+// 	//   myState: any;
+//  }
+
+
+Context
+
+
+
+import { useState, createContext, useMemo, FC, PropsWithChildren } from "react";
+import { PropsInit } from "./interface";
+
+export const contextProps = createContext<PropsInit>({} as PropsInit);
+
+export const ContextTest: FC<PropsWithChildren> = ({ children }) => {
+  const [enemy, setEnemy] = useState([]);
+
+  const valuePropvaider = useMemo(() => {
+    return { enemy, setEnemy };
+  }, [enemy, setEnemy]);
+
+  return (
+    <contextProps.Provider value={valuePropvaider}>
+      {children}
+    </contextProps.Provider>
+  );
+};

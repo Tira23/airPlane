@@ -1,0 +1,97 @@
+import React, { FC, useContext, useCallback } from "react";
+import { Context } from "./Context";
+import { Pole } from "./interface";
+// import { PoleBG } from "./PoleBG";
+
+export const BackGroundPole: FC = () =>
+    // {
+    // pole,
+    // newPolePos,
+    // clearImgPole,
+    // backGroundPole,
+    // setBackGroundPole,
+    // }
+    {
+        const { backGroundPole, setBackGroundPole } = useContext(Context);
+        // создаю заднего фона
+        // useInterval(() => {
+        //   if (
+        //     // refPole.current?.offsetTop === refPole.current?.offsetHeight &&
+        //     backGroundPole.length < 5
+        //   ) {
+        //     const newPole = {
+        //       poleId: Date.now(),
+        //       position: { top: 0, left: 0 },
+        //     };
+
+        //     setBackGroundPole((prev) => {
+        //       return [...prev, newPole];
+        //     });
+        //   }
+        // }, 1);
+        //===================================================
+
+        // новая позиция врага
+        const newPolePos = useCallback(
+            (pole: Pole) => {
+                setBackGroundPole((prev) => {
+                    return [
+                        ...prev.filter((item) => item.poleId !== pole.poleId),
+                        pole,
+                    ];
+                });
+            },
+            [setBackGroundPole]
+        );
+        //=======================================================
+
+        // const { poleId, position } = pole;
+
+        // useInterval(() => {
+        //   const { top, left } = pole.position;
+        //   const polePos = { poleId, position: { top: top + 1, left } };
+        //   newPolePos(polePos);
+        // }, 10);
+
+        // новая позиция поля
+        // useInterval(() => {
+        //   setBackGroundPole((prev) => {
+        //     return [
+        //       ...prev.filter((item) => item.poleId !== backGroundPole.poleId),
+        //       pole,
+        //     ];
+        //   });
+        // });
+        // =======================================================
+
+        // удаление поля за пределами экрана
+        const clearImgPole = useCallback(
+            (pole: Pole) => {
+                setBackGroundPole((prev) => [
+                    ...prev.filter((item) => item.poleId !== pole.poleId),
+                ]);
+            },
+            [setBackGroundPole]
+        );
+        //===================================================
+
+        return (
+            <div className="backGroundPoleDIV">
+                {backGroundPole.map((item) => (
+                    <PoleBG
+                        key={item.poleId}
+                        pole={item}
+                        newPolePos={newPolePos}
+                        clearImgPole={clearImgPole}
+                    />
+                ))}
+            </div>
+            // <img
+            //   ref={refPole}
+            //   src="../image/pole2.jpg"
+            //   alt="backGround"
+            //   style={position}
+            //   className="backGroundPole"
+            // ></img>
+        );
+    };

@@ -1,0 +1,44 @@
+import React, { useEffect } from "react";
+import { Pole } from "./interface";
+interface IPoleProps {
+    pole: Pole;
+    newPolePos(pole: Pole): void;
+    clearImgPole(pole: Pole): void;
+}
+export const PoleBG = ({ pole, newPolePos, clearImgPole }: IPoleProps) => {
+    const { poleId, position } = pole;
+
+    // отправляет новую позицию поля после смещения вниз
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const { top, left } = position;
+            const polePos = { poleId, position: { top: top + 1, left } };
+            newPolePos(polePos);
+        }, 100);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [newPolePos, poleId, position]);
+
+    //  ===================================================
+
+    // отправляет позицию поля для удаления, если оно за пределами экрана
+    useEffect(() => {
+        if (position.top > window.innerHeight) {
+            clearImgPole(pole);
+        }
+    }, [clearImgPole, pole, position.top]);
+    //===================================================
+
+    return (
+        <div style={position}>
+            <img
+                src="../image/pole2.jpg"
+                alt={"поле"}
+                // newPolePos={newPolePos}
+                // clearImgPole={clearImgPole}
+            />
+        </div>
+    );
+};
